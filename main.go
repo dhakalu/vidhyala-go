@@ -19,7 +19,14 @@ func main() {
 	myServer := server.StartApplication()
 
 	myServer.GET("/schools", func(c *gin.Context) {
-		c.JSON(200, schoolsController.FindAll())
+		schools, err := schoolsController.FindAll()
+		if err == nil {
+			c.JSON(400, gin.H{
+				"message": "Some error occurred while fetching schools. Try again later.",
+			})
+		} else {
+			c.JSON(200, schools)
+		}
 	})
 
 	myServer.GET("/schools/:id", func(c *gin.Context) {

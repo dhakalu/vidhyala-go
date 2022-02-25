@@ -6,7 +6,7 @@ import (
 )
 
 type SchoolService interface {
-	FindAll() []entities.School
+	FindAll() ([]entities.School, error)
 	FindById(id int64) (entities.School, error)
 	Save(school entities.School) (entities.School, error)
 	Delete(id int64) error
@@ -22,7 +22,7 @@ func NewSchoolService() SchoolService {
 	}
 }
 
-func (s *schoolService) FindAll() []entities.School {
+func (s *schoolService) FindAll() ([]entities.School, error) {
 	return s.schoolRepository.FindAll()
 }
 

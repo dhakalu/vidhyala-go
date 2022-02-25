@@ -7,7 +7,7 @@ import (
 )
 
 type SchoolsController interface {
-	FindAll() []entities.School
+	FindAll() ([]entities.School, error)
 	FindById(id int64) (entities.School, error)
 	Save(ctx *gin.Context) (entities.School, error)
 	Delete(id int64) error
@@ -23,7 +23,7 @@ func NewSchoolsController(service services.SchoolService) SchoolsController {
 	}
 }
 
-func (c controller) FindAll() []entities.School {
+func (c controller) FindAll() ([]entities.School, error) {
 	return c.service.FindAll()
 }
 

@@ -10,7 +10,7 @@ import (
 )
 
 type SchoolRepository interface {
-	FindAll() []entities.School
+	FindAll() ([]entities.School, error)
 	FindById(id int64) (entities.School, error)
 	Save(school entities.School) (entities.School, error)
 	Delete(id int64) error
@@ -26,17 +26,15 @@ func NewSchoolRepository() SchoolRepository {
 	}
 }
 
-func (r *schoolRepository) FindAll() []entities.School {
+func (r *schoolRepository) FindAll() ([]entities.School, error) {
 	// todo implement
 	var schools []entities.School
 
 	rows, err := r.db.Query(context.Background(), `SELECT * FROM schools`)
 	if err != nil {
-		fmt.Printf("Error reading %v \n", err)
-		return schools
+		return schools, err
 	} else {
 		for rows.Next() {
-			fmt.Println("reading next row")
 			var school entities.School
 			err := rows.Scan(
 				&school.Id,
@@ -54,16 +52,16 @@ func (r *schoolRepository) FindAll() []entities.School {
 			)
 			if err != nil {
 				fmt.Println(err)
+				// todo should you end and return an error?
 				continue
 			}
 			schools = append(schools, school)
 		}
 	}
-	return schools
+	return schools, nil
 }
 
 func (r *schoolRepository) FindById(id int64) (entities.School, error) {
-	// todo implement
 	var school entities.School
 
 	row := r.db.QueryRow(context.Background(), `SELECT * FROM schools WHERE id = $1`, id)
@@ -105,7 +103,6 @@ func (r *schoolRepository) Save(school entities.School) (entities.School, error)
 		created_at,
 		updated_at
 	) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11);`
-		fmt.Println(sql)
 		_, err := r.db.Exec(context.Background(), sql,
 			school.Name,
 			school.Address,
@@ -130,7 +127,6 @@ func (r *schoolRepository) Save(school entities.School) (entities.School, error)
 }
 
 func (r *schoolRepository) Delete(id int64) error {
-	// todo implement
 	sql := `DELETE FROM schools WHERE id = $1`
 	_, err := r.db.Exec(context.Background(), sql, id)
 	if err != nil {
