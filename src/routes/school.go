@@ -5,6 +5,7 @@ import (
 	"strconv"
 
 	"github.com/gin-gonic/gin"
+	log "github.com/sirupsen/logrus"
 	"my-school.com/my-school-api/src/controllers"
 	"my-school.com/my-school-api/src/services"
 )
@@ -25,7 +26,8 @@ func (r routes) addSchoolRoutes(rg *gin.RouterGroup) {
 
 func fetchAllSchool(c *gin.Context) {
 	schools, err := schoolsController.FindAll()
-	if err == nil {
+	if err != nil {
+		log.Error(err.Error())
 		c.JSON(400, gin.H{
 			"message": "Some error occurred while fetching schools. Try again later.",
 		})
@@ -38,6 +40,7 @@ func fetchSchoolById(c *gin.Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
 	school, err := schoolsController.FindById(int64(id))
 	if err != nil {
+		log.Error(err.Error())
 		c.JSON(400, gin.H{
 			"message": "Could not find school with id: " + c.Param("id"),
 		})
@@ -50,6 +53,7 @@ func deleteSchoolById(c *gin.Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
 	err := schoolsController.Delete(int64(id))
 	if err != nil {
+		log.Error(err.Error())
 		c.JSON(400, gin.H{
 			"message": "Could not delete school with id: " + c.Param("id"),
 		})
@@ -64,6 +68,7 @@ func createSchool(ctx *gin.Context) {
 	record, err := schoolsController.Save(ctx)
 	fmt.Printf("error is %v", err)
 	if err != nil {
+		log.Error(err.Error())
 		ctx.JSON(400, gin.H{
 			"message": "Could not save record at this time. Please try again later.",
 		})

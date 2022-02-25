@@ -19,5 +19,6 @@ func NewRoutes() routes {
 }
 
 func (r routes) Run(addr ...string) error {
+	gin.SetMode(gin.ReleaseMode)
 	return r.router.Run()
 }
