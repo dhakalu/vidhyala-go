@@ -8,3 +8,5 @@ This is backend for vidyalaya, an application designed to provide IT services to
 - Golang
   - gin (HTTP/API layer)
   - pgx (data access layer)
+
+## Folder structure
