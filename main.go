@@ -62,7 +62,7 @@ func main() {
 
 	myServer.GET("/", func(conext *gin.Context) {
 		conext.JSON(200, gin.H{
-			"message": "Hello World!",
+			"message": "Oops! None of the routes matched your request. Please check the documentation.",
 		})
 	})
 	myServer.Run()
