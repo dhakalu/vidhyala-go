@@ -76,11 +76,3 @@ func createSchool(ctx *gin.Context) {
 		ctx.JSON(200, record)
 	}
 }
-
-// myServer.GET("/", func(conext *gin.Context) {
-// 	conext.JSON(200, gin.H{
-// 		"message": "Oops! None of the routes matched your request. Please check the documentation.",
-// 	})
-// })
-
-// myServer.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
