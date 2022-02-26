@@ -14,6 +14,7 @@ func NewRoutes() routes {
 		router: gin.Default(),
 	}
 	v1 := r.router.Group("/api/v1")
+	r.addSwagerRoutes(v1)
 	r.addSchoolRoutes(v1)
 	return r
 }
