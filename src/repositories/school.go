@@ -102,8 +102,8 @@ func (r *schoolRepository) Save(school entities.School) (*entities.School, error
 		website,
 		created_at,
 		updated_at
-	) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11);`
-		_, err := r.db.Exec(context.Background(), sql,
+	) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING id;`
+		err := r.db.QueryRow(context.Background(), sql,
 			school.Name,
 			school.Address,
 			school.City,
@@ -115,10 +115,10 @@ func (r *schoolRepository) Save(school entities.School) (*entities.School, error
 			school.Website,
 			school.CreatedAt,
 			school.UpdatedAt,
-		)
+		).Scan(&school.Id)
 		if err != nil {
 			fmt.Printf("%v \n", err)
-			return &entities.School{}, err
+			return nil, err
 		}
 		return &school, nil
 	} else {
