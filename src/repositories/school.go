@@ -12,7 +12,7 @@ import (
 type SchoolRepository interface {
 	FindAll() ([]entities.School, error)
 	FindById(id int64) (entities.School, error)
-	Save(school entities.School) (entities.School, error)
+	Save(school entities.School) (*entities.School, error)
 	Delete(id int64) error
 }
 
@@ -86,9 +86,9 @@ func (r *schoolRepository) FindById(id int64) (entities.School, error) {
 	return school, nil
 }
 
-func (r *schoolRepository) Save(school entities.School) (entities.School, error) {
+func (r *schoolRepository) Save(school entities.School) (*entities.School, error) {
 
-	existingSchool, err := r.FindById(school.Id)
+	_, err := r.FindById(school.Id)
 	if err != nil {
 		sql := `INSERT INTO schools(
 		school_name,
@@ -118,11 +118,11 @@ func (r *schoolRepository) Save(school entities.School) (entities.School, error)
 		)
 		if err != nil {
 			fmt.Printf("%v \n", err)
-			return entities.School{}, err
+			return &entities.School{}, err
 		}
-		return school, nil
+		return &school, nil
 	} else {
-		return existingSchool, err
+		return nil, err
 	}
 }
 

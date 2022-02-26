@@ -18,6 +18,7 @@ require (
 	github.com/swaggo/gin-swagger v1.4.1 // indirect
 	github.com/swaggo/swag v1.8.0 // indirect
 	github.com/ugorji/go v1.2.6 // indirect
+	github.com/ulule/deepcopier v0.0.0-20200430083143-45decc6639b6 // indirect
 	github.com/urfave/cli v1.20.0 // indirect
 	golang.org/x/crypto v0.0.0-20220214200702-86341886e292 // indirect
 	golang.org/x/net v0.0.0-20220225172249-27dd8689420f // indirect

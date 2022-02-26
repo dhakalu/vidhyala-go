@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"github.com/gin-gonic/gin"
+	"my-school.com/my-school-api/src/dtos"
 	"my-school.com/my-school-api/src/entities"
 	"my-school.com/my-school-api/src/services"
 )
@@ -9,7 +10,7 @@ import (
 type SchoolsController interface {
 	FindAll() ([]entities.School, error)
 	FindById(id int64) (entities.School, error)
-	Save(ctx *gin.Context) (entities.School, error)
+	Save(ctx *gin.Context) (*entities.School, error)
 	Delete(id int64) error
 }
 
@@ -31,9 +32,13 @@ func (c controller) FindById(id int64) (entities.School, error) {
 	return c.service.FindById(id)
 }
 
-func (c controller) Save(ctx *gin.Context) (entities.School, error) {
-	var school entities.School
-	ctx.BindJSON(&school)
+func (c controller) Save(ctx *gin.Context) (*entities.School, error) {
+	var school dtos.SchoolCreateRequest
+	err := ctx.BindJSON(&school)
+	if err != nil {
+		// todo return a custom error so it can be handled in the route properly
+		return nil, err
+	}
 	return c.service.Save(school)
 }
 

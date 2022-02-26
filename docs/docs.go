@@ -72,7 +72,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/entities.School"
+                            "$ref": "#/definitions/dtos.SchoolCreateRequest"
                         }
                     }
                 ],
@@ -162,6 +162,38 @@ const docTemplate = `{
         }
     },
     "definitions": {
+        "dtos.SchoolCreateRequest": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "city": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "fax": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "providence": {
+                    "type": "string"
+                },
+                "website": {
+                    "type": "string"
+                },
+                "zip": {
+                    "type": "string"
+                }
+            }
+        },
         "entities.School": {
             "type": "object",
             "properties": {

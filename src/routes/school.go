@@ -1,7 +1,6 @@
 package routes
 
 import (
-	"fmt"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
@@ -91,13 +90,12 @@ func deleteSchoolById(c *gin.Context) {
 // @Success 200 {object} entities.School
 // @Failure 400 {object} routes.ErrorResponse
 // @Router /api/v1/schools [post]
-// @Param school body entities.School true "JSON object representing a school."
+// @Param school body dtos.SchoolCreateRequest true "JSON object representing a school."
 func createSchool(ctx *gin.Context) {
 	record, err := schoolsController.Save(ctx)
-	fmt.Printf("error is %v", err)
 	if err != nil {
 		log.Error(err.Error())
-		ctx.JSON(400, NewErrorResponse("Could not save record at this time. Please try again later."))
+		ctx.JSON(400, NewErrorResponse(err.Error()))
 	} else {
 		ctx.JSON(200, record)
 	}

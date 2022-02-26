@@ -1,6 +1,10 @@
 package services
 
 import (
+	"time"
+
+	"github.com/ulule/deepcopier"
+	"my-school.com/my-school-api/src/dtos"
 	"my-school.com/my-school-api/src/entities"
 	"my-school.com/my-school-api/src/repositories"
 )
@@ -8,7 +12,7 @@ import (
 type SchoolService interface {
 	FindAll() ([]entities.School, error)
 	FindById(id int64) (entities.School, error)
-	Save(school entities.School) (entities.School, error)
+	Save(school dtos.SchoolCreateRequest) (*entities.School, error)
 	Delete(id int64) error
 }
 
@@ -30,8 +34,13 @@ func (s *schoolService) FindById(id int64) (entities.School, error) {
 	return s.schoolRepository.FindById(id)
 }
 
-func (s *schoolService) Save(school entities.School) (entities.School, error) {
-	return s.schoolRepository.Save(school)
+func (s *schoolService) Save(createRequest dtos.SchoolCreateRequest) (*entities.School, error) {
+	schoolEntity := entities.School{}
+	// todo is this right way to do this?
+	deepcopier.Copy(&createRequest).To(&schoolEntity)
+	schoolEntity.CreatedAt = time.Now()
+	schoolEntity.UpdatedAt = time.Now()
+	return s.schoolRepository.Save(schoolEntity)
 }
 
 func (s *schoolService) Delete(id int64) error {
