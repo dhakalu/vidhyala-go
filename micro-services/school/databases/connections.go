@@ -21,8 +21,6 @@ func ConnectionString() string {
 
 func CreateConnection() *pgxpool.Pool {
 
-	fmt.Println("creating pools")
-
 	pgSQLConnectionString := ConnectionString()
 
 	var err error
@@ -36,7 +34,5 @@ func CreateConnection() *pgxpool.Pool {
 	if err != nil {
 		panic(err)
 	}
-
-	fmt.Println("Successfully connected!")
 	return pool
 }
