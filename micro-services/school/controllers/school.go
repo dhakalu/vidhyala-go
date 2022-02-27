@@ -2,9 +2,9 @@ package controllers
 
 import (
 	"github.com/gin-gonic/gin"
-	"my-school.com/my-school-api/src/dtos"
-	"my-school.com/my-school-api/src/entities"
-	"my-school.com/my-school-api/src/services"
+	"vidhyalayer.com/micro-services/school/dtos"
+	"vidhyalayer.com/micro-services/school/entities"
+	"vidhyalayer.com/micro-services/school/services"
 )
 
 type SchoolsController interface {

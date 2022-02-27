@@ -5,8 +5,8 @@ import (
 	"fmt"
 
 	"github.com/jackc/pgx/v4/pgxpool"
-	"my-school.com/my-school-api/src/databases"
-	"my-school.com/my-school-api/src/entities"
+	"vidhyalayer.com/micro-services/school/databases"
+	"vidhyalayer.com/micro-services/school/entities"
 )
 
 type SchoolRepository interface {

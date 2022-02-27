@@ -5,8 +5,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
-	"my-school.com/my-school-api/src/controllers"
-	"my-school.com/my-school-api/src/services"
+	"vidhyalayer.com/micro-services/school/controllers"
+	"vidhyalayer.com/micro-services/school/services"
 )
 
 var (

@@ -1,7 +1,7 @@
 package main
 
 import (
-	routes "my-school.com/my-school-api/src/routes"
+	routes "vidhyalayer.com/micro-services/school/routes"
 )
 
 // @title School API
