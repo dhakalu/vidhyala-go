@@ -8,8 +8,19 @@ This is backend for vidyalaya, an application designed to provide IT services to
 - Golang
   - gin (HTTP/API layer)
   - pgx (data access layer)
+- AWS _(Not implemented)_
+  - ECS/EKS to run the docker containers
+  - RDS to host postgres sql
+  - parameter-store to store environmental parameters
 
 ## Folder structure
+
+- micro-services: each directory within will be a go module. Each of the module will be a separately deployable service.
+
+- stack: tools for maintaining this mono repo.
+
+> **Todo:**
+create cli tool to generate new micro-service project
 
 ## Documentation
 
