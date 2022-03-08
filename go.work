@@ -2,4 +2,9 @@ go 1.17
 
 use (
     ./micro-services/school // vidhyalayer.com/micro-services/school
+    ./pkg/database // vidyalaya.com/pkg/database
+)
+
+replace (
+    vidyalaya.com/pkg/database => ./pkg/database
 )

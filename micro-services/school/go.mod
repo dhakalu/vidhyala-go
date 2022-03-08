@@ -44,4 +44,5 @@ require (
 	golang.org/x/text v0.3.7 // indirect
 	golang.org/x/tools v0.1.7 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
+	vidyalaya.com/pkg/database v0.0.0-20200731101051-f9f8f8b8f8f5 // indirect
 )
