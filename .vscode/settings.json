@@ -5,5 +5,7 @@
     "pgxpool",
     "vidhyala",
     "vidyalaya"
-  ]
+  ],
+  "editor.wordWrap": "on",
+  "breadcrumbs.enabled": true
 }
