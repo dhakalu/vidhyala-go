@@ -1,4 +1,4 @@
-module vidyalaya.com/pkg/database
+module vidyalaya.com/pkg/database/v1.0.0
 
 go 1.18
 

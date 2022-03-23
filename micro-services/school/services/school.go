@@ -4,9 +4,9 @@ import (
 	"time"
 
 	"github.com/ulule/deepcopier"
-	"vidhyalayer.com/micro-services/school/dtos"
-	"vidhyalayer.com/micro-services/school/entities"
-	"vidhyalayer.com/micro-services/school/repositories"
+	"vidyalaya.com/micro-services/school/dtos"
+	"vidyalaya.com/micro-services/school/entities"
+	"vidyalaya.com/micro-services/school/repositories"
 )
 
 type SchoolService interface {

@@ -15,9 +15,10 @@ This is backend for vidyalaya, an application designed to provide IT services to
 
 ## Folder structure
 
-- micro-services: each directory within will be a go module. Each of the module will be a separately deployable service.
+- **micro-services**: each directory within will be a go module. Each of the module will be a separately deployable service.
 
-- stack: tools for maintaining this mono repo.
+- **stack**: tools for maintaining this mono repo.
+- **pkg**: common resources/packages shared between micro services.
 
 > **Todo:**
 create cli tool to generate new micro-service project
@@ -32,4 +33,4 @@ To see the documentation run the application and then visit <http://localhost:80
 
 ## Running locally
 
-To run this application locally run the command `go run .` from root of the project.
+To run this application locally run the command `go run .` from root of the micro service you want to run.

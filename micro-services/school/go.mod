@@ -1,4 +1,4 @@
-module vidhyalayer.com/micro-services/school
+module vidyalaya.com/micro-services/school
 
 go 1.18
 
